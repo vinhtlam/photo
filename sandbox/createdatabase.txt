@@ -1,0 +1,128 @@
+CREATE DATABASE widget_corp;
+
+GRANT ALL PRIVILEGES ON widget_corp .*
+TO 'widget_cms'@'localhost'
+IDENTIFIED BY 'secretpassword';
+
+SHOW TABLES;
+
+CREATE TABLE subjects (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	menu_name VARCHAR(30) NOT NULL,
+	position INT(3) NOT NULL,
+	visible TINYINT(1) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+SHOW COLUMNS FROM subjects;
+
+SELECT *
+FROM table
+WHERE column1 = 'some text'
+ORDER BY 	ASC /DESC;
+
+INSERT INTO subjects (menu_name, position, visible)
+VALUES ('About Widget Corp', 1, 1);
+
+INSERT INTO subjects (menu_name, position, visible)
+VALUES ('Products', 2, 1);
+
+INSERT INTO subjects (menu_name, position, visible)
+VALUES ('Services', 3, 1);
+
+INSERT INTO subjects (menu_name, position, visible)
+VALUES ('Misc', 4, 0);
+
+INSERT INTO subjects (menu_name, position, visible)
+VALUES ('Today's Widget Trivia, 5, 1);
+
+SELECT * FROM subjects WHERE visible = 1 ORDER BY position DESC;
+
+UPDATE subjects
+SET visible = 1
+WHERE id > 3;
+
+DELETE FROM subjects
+WHERE id = 4;
+
+------------------------------
+CREATE TABLE pages (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	subject_id INT(11) NOT NULL,
+	menu_name VARCHAR(30) NOT NULL,
+	position INT(3) NOT NULL,
+	visible TINYINT(1) NOT NULL,
+	content TEXT,
+	PRIMARY KEY (id),
+	INDEX (subject_id)
+);
+
+------------------------------
+
+CREATE TABLE pages (
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	subject_id INT(11) NOT NULL,
+	menu_name VARCHAR(30) NOT NULL,
+	position INT(3) NOT NULL,
+	visible TINYINT(1) NOT NULL,
+	content TEXT,
+	PRIMARY KEY (id),
+	FOREIGN KEY (subjects_id)
+		REFERENCES subjects(id)
+		ON DELETE CASCADE,
+);
+
+-------------------------------
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (1, 'Our Mission', 1, 1, 'Our mission has always been');
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (1, 'Our History', 2, 1, 'Foundec in 1898 by two enterprising engineer...');
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (2, 'Larger Widgets', 1, 1, 'Our large widget have to be seen to be believed');
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (2, 'Smaller Widgets', 1, 1, 'We love to replace widget');
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (3, 'Retrofit', 1, 1, 'We love to replace widget');
+
+INSERT INTO pages (subject_id, menu_name, position, visible, content)
+VALUES (3, 'Certification', 2, 1, 'We can certificate any widget');
+
+-------------------------------
+
+CREATE DATABASE support_yars;
+
+GRANT ALL PRIVILEGES ON support_yars .*
+TO 'yars_support'@'localhost'
+IDENTIFIED BY '789456';
+
+update ost_staff set passwd = md5('yournewpassword') where staff_id='1';
+
+
+------------------------
+
+SHOW GRANTS FOR 'yars_support'@'localhost';
+----------------------------------
+
+1. create a database connection
+2. perform db query
+3. use returned data
+4. release returned data
+5. close db conn
+
+--------------------------------
+
+$query = "INSERT INTO subjects (menu_name, position, visible)
+			VALUES ('{$menu_name}, {$position}, {$visible})";
+
+--------------------------------------------------------------
+$query = "INSERT INTO subjects (";
+$query .= " menu_name, position, visible";
+$query .= ") VALUES (";
+$query .= " '{$menu_name}', {$position}, {$visible}";
+$query .= ")";
+

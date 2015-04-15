@@ -1,0 +1,17 @@
+mysql -u root -p
+
+CREATE DATABASE widget;
+
+USE widget_corp;
+
+CREATE TABLE admins (
+	id INT(30) NOT NULL AUTO_INCREMENT,
+	username VARCHAR(20) NOT NULL,
+	hashed_password VARCHAR(60) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+SHOW TABLES;
+
+SHOW FIELDS FROM admins;
+
