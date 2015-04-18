@@ -7,7 +7,17 @@ if(!$session->is_logged_in()) {	redirect_to("login.php"); }
 
 // }
 
-$max_file_size = 20489999;
+// 1 mb = 1024 KB = 1048576 B
+// 2 mb = 2048 KB = 2097152 B
+// 2 mb = 2048 KB = 3145728 B
+// 4 mb = 4194304 B
+// 5 mb = 5242880 B
+// 6 mb = 6291456 B
+// 7 mb = 7340032 B
+// 8 mb = 8388608 B
+
+
+$max_file_size = 2097152;
 
 $message = "";
 if(isset($_POST['submit'])) {
@@ -16,8 +26,7 @@ if(isset($_POST['submit'])) {
 	$photo->attach_file($_FILES['file_upload']);
 	if($photo->save()) {
 		//Success
-		$message = "Pho uploaded successfully";
-
+		$message = "Photo uploaded successfully";
 	} else {
 		//Failure
 		$message = join("<br />", $photo->errors);

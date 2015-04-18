@@ -134,7 +134,7 @@ class Photograph extends DatabaseObject{
 		$object->firstname 	= $record['first_name'];
 		$object->lastname 	= $record['last_name'];*/
 		//More dynamic, short-form approach:
-		foreach($record as $attribute=>$value) {
+	foreach($record as $attribute=>$value) {
 			if($object->has_attribute($attribute)) {
 				$object->$attribute = $value;
 			}
@@ -187,7 +187,7 @@ class Photograph extends DatabaseObject{
 
 		$attributes = $this->sanitized_attributes();
 
-		$sql = "INSERT INTO" . seft::$table_name . " (";
+		$sql = "INSERT INTO " . self::$table_name . " (";
 		$sql .= join(", ", array_keys($attributes));
 		//"username, password, first_name, last_name";
 		$sql .= ") VALUES ('";
@@ -221,7 +221,7 @@ class Photograph extends DatabaseObject{
 			$attribute_pairs[] = "{$key} = '{$value}'";
 		}
 
-		$sql = "UPDATE ". seft::$table_name . " SET ";
+		$sql = "UPDATE ". self::$table_name . " SET ";
 		$sql .= join(", " .$attribute_pairs);
 		
 		// $sql .= "username='". $database->escape_value($this->username). "', ";
@@ -238,7 +238,7 @@ class Photograph extends DatabaseObject{
 		global $database;
 		
 		//DELETE FROM table WHERE condition LIMIT 1
-		$sql = "DELETE FROM ". seft::$table_name ;
+		$sql = "DELETE FROM ". self::$table_name ;
 		$sql .= "WHERE id=". $database->escape_value($this->id);
 		$sql .= " LIMIT 1";
 
