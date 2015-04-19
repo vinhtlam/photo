@@ -95,8 +95,22 @@ class Photograph extends DatabaseObject{
 				return false;
 			}
 		}
+	}
 
+	public function image_path() {
+		return $this->upload_dir.DS.$this->filename;
+	}
 
+	public function size_as_text() {
+		if($this->size <1024){
+			return "{$this->size} bytes";
+		} elseif($this->size <1048576) {
+			$size_kb = round($this->size/1024);
+			return "{$size_kb} bytes";
+		} else {
+			$size_mb = round($this->size/1048576, 1);
+			return "{$size_mb} bytes";
+		}
 	}
 
 //---------- Common Database Methods
