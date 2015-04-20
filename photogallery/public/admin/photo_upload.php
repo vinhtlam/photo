@@ -26,7 +26,8 @@ if(isset($_POST['submit'])) {
 	$photo->attach_file($_FILES['file_upload']);
 	if($photo->save()) {
 		//Success
-		$message = "Photo uploaded successfully";
+		$session->message("Photo uploaded successfully.");
+		redirect_to('list_photos.php');
 	} else {
 		//Failure
 		$message = join("<br />", $photo->errors);

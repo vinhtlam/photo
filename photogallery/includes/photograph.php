@@ -97,6 +97,19 @@ class Photograph extends DatabaseObject{
 		}
 	}
 
+	public function destroy() {
+		//First remove the database entry
+		if($this->delete()) {
+			//then remove the file
+			$target_path = SITE_ROOT.DS.'public'.DS.$this->image_path();
+			return unlink($target_path) ? true : false;
+		} else {
+			//database delete failed
+			return false;
+		}
+		
+	}
+
 	public function image_path() {
 		return $this->upload_dir.DS.$this->filename;
 	}
@@ -121,9 +134,11 @@ class Photograph extends DatabaseObject{
 
 	public static function find_by_id($id=0) {
 		global $database;
-		$result_array = static::find_by_sql("SELECT * FROM ".static::$table_name." WHERE id={$id} LIMIT 1");
+		$result_array = static::find_by_sql("SELECT * FROM ".static::$table_name.
+		" WHERE id=". $database->escape_value($id). " LIMIT 1");
 		return !empty($result_array) ? array_shift($result_array) : false;
-		//array_shift pull the first element out of the array, we can also just return the index $result_array[0]
+		//array_shift pull the first element out of the array, we can also just return 
+		//the index $result_array[0]
 	}
 
 	public static function find_by_sql($sql="") {
@@ -148,7 +163,7 @@ class Photograph extends DatabaseObject{
 		$object->firstname 	= $record['first_name'];
 		$object->lastname 	= $record['last_name'];*/
 		//More dynamic, short-form approach:
-	foreach($record as $attribute=>$value) {
+		foreach($record as $attribute=>$value) {
 			if($object->has_attribute($attribute)) {
 				$object->$attribute = $value;
 			}
@@ -253,7 +268,7 @@ class Photograph extends DatabaseObject{
 		
 		//DELETE FROM table WHERE condition LIMIT 1
 		$sql = "DELETE FROM ". self::$table_name ;
-		$sql .= "WHERE id=". $database->escape_value($this->id);
+		$sql .= " WHERE id=". $database->escape_value($this->id);
 		$sql .= " LIMIT 1";
 
 		$database->query($sql);
