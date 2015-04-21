@@ -12,11 +12,13 @@ echo $session->message;
 ?>
 
 <h2>Menu</h2>
+<ul>
+	<li><a href="list_photos.php">Index of photos</a></li>
+	<br />
+	<li><a href="logfile.php">View Log File</a></li>
+	<br />
 
-<a href="logfile.php">View Log File</a>
-<br />
-
-<a href="logout.php">Logout</a>
+	<li><a href="logout.php">Logout</a></li>
 	</div>
 
 <?php include_layout_template('admin_footer.php'); ?>
