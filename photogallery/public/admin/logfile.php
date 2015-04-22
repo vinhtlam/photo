@@ -28,7 +28,6 @@ if($_GET['clear'] == 'true'){
 
 		<a href="logfile.php?clear=true" onclick="return confirm('Are you sure?')">Clear log file</a>
 		<?php	
-
 			
 			if(file_exists($logfile) && is_readable($logfile) && $handle = fopen($logfile, 'r')) {	//readable?
 				echo "<ul class=\"log-entries\">";

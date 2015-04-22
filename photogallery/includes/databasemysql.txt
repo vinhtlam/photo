@@ -13,3 +13,17 @@ caption VARCHAR(255) NOT NULL
 GRANT ALL PRIVILEGES ON photo_gallery .*
 TO 'gallery'@'localhost'
 IDENTIFIED BY 'phpOTL123';
+
+CREATE TABLE comments (
+id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY , 
+photograph_id INT(11) NOT NULL,
+created DATETIME NOT NULL,
+author VARCHAR(255) NOT NULL,
+body TEXT NOT NULL
+);
+
+ALTER TABLE comments ADD INDEX (photograph_id);
+
+SHOW TABLEs;
+
+SHOW FIELDS FROM comments;

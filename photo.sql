@@ -16,6 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `photograph_id` int(11) NOT NULL,
+  `created` datetime NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `body` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `photograph_id` (`photograph_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `photographs`
 --
 
@@ -29,7 +56,7 @@ CREATE TABLE `photographs` (
   `size` int(11) NOT NULL,
   `caption` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +65,7 @@ CREATE TABLE `photographs` (
 
 LOCK TABLES `photographs` WRITE;
 /*!40000 ALTER TABLE `photographs` DISABLE KEYS */;
-INSERT INTO `photographs` VALUES (1,'haiquyen.jpg','image/jpeg',124393,'on the beach'),(2,'94f4467b5ab7b8.jpg','image/jpeg',169435,'Kate Upton Cover'),(3,'h3.jpgs.jpg','image/jpeg',31968,'chinese model1');
+INSERT INTO `photographs` VALUES (1,'haiquyen.jpg','image/jpeg',124393,'on the beach'),(2,'94f4467b5ab7b8.jpg','image/jpeg',169435,'Kate Upton Cover'),(3,'h3.jpgs.jpg','image/jpeg',31968,'chinese model1'),(5,'94f4467c8851a8.jpg','image/jpeg',131780,'Kate Sport Illustrast');
 /*!40000 ALTER TABLE `photographs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +83,7 @@ CREATE TABLE `users` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,4 +105,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-20 22:03:37
+-- Dump completed on 2015-04-22 16:49:23

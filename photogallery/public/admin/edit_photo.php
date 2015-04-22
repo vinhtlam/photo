@@ -4,34 +4,29 @@ require_once('../../includes/functions.php');
 
 if(!$session->is_logged_in()) {	redirect_to("login.php"); }
 // if(isset($session->message)){
+if(isset($_GET['id'])) {
+	$id = $_GET['id'];	
+} else { redirect_to("list_photos.php"); }
 
-$photos = Photograph::find_all();
+
+$photos = Photograph::find_by_id($id);
 
 // }
 
 include_layout_template('admin_header.php');
 ?>
 
-<h2>List of Photos</h2>
+<h2>Edit Photo</h2>
 <?php echo output_message($message); ?>
-<table class="bordered">
-	<tr>
-		<th>Image</th>
-		<th>Filename</th>
-		<th>Caption</th>
-		<th>Size</th>
-		<th>Type</th>
-		<th>Action</th>
-	</tr>
-<?php foreach($photos as $photo):  ?>
-	<tr>
-		<td><img src="../<?php echo $photo->image_path();?>" width="100" /> </td>
-		<td><?php echo $photo->filename; ?> </td>
+
+<?php  ?>
+	<img src="../<?php echo $photo->image_path();?>" width="100" /> <br />
+	<input type="text"> <?php echo $photo->filename; ?> </td>
 		<td><?php echo $photo->caption; ?> </td>
 		<td><?php echo $photo->size_as_text();?> </td>
 		<td><?php echo $photo->type; ?> </td>
 		<td><a href="delete_photo.php?id=<?php echo $photo->id;?>">Delete</a><br />
-		
+		<a href="edit_photo.php?id=<?php echo $photo->id;?>">Edit</a>
 		</td>
 	</tr>
 
