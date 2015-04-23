@@ -30,7 +30,7 @@ CREATE TABLE `comments` (
   `body` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `photograph_id` (`photograph_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,1,'2015-04-23 19:40:23','Vinh lam','I like this photo.'),(3,1,'2015-04-23 21:15:00','Tom','Woa, that\'s a great photo.'),(4,1,'2015-04-23 21:15:48','Tim','It isn\'t that good.'),(5,1,'2015-04-23 21:16:07','Vivian','It\'s ok a.');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-22 16:49:23
+-- Dump completed on 2015-04-23 21:31:03

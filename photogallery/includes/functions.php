@@ -57,32 +57,9 @@ function log_action($action, $message="") {
 	}
 }
 
-// function view_log(){
-
-// 	$logfile = SITE_ROOT.DS.'logs'.DS.'user.log';
-// 	if($handle = fopen($logfile, 'r')) {	//readable?
-// 		while(!feof($handle)){
-// 			$content = fgets($handle);
-// 			echo "<li>";
-// 			echo $content;
-// 			echo "</li>";
-// 		}
-// 		fclose($handle);
-// 	}
-// }
-
-// Dung file_put_content() to overwrite
-// function clear_log($user) {
-// 	$logfile = SITE_ROOT.DS.'logs'.DS.'user.log';
-// 	if($handle = fopen($logfile, 'w')){
-// 		fwrite($handle, "");
-// 		log_action('Clear log', "by {$user}.")	;
-// 		return true;
-// 	} else {
-// 		echo "Could not open file for writing";
-// 		return false;
-// 	}
-
-// }
+function datetime_to_text($datetime="") {
+	$unixdatetime = strtotime($datetime);
+	return strftime("%B %d %Y at %I:%M %p", $unixdatetime);
+}
 
 ?>

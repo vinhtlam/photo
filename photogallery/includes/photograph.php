@@ -126,6 +126,10 @@ class Photograph extends DatabaseObject{
 		}
 	}
 
+	public function comments() {
+		return Comment::find_comments_on($this->id); 
+	}
+
 //---------- Common Database Methods
 
 	public static function find_all() {
