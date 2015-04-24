@@ -6,11 +6,9 @@ if(!$session->is_logged_in()) {	redirect_to("login.php"); }
 // if(isset($session->message)){
 
 $photos = Photograph::find_all();
-
-// }
-
-include_layout_template('admin_header.php');
 ?>
+
+<?php include_layout_template('admin_header.php'); ?>
 
 <h2>List of Photos</h2>
 <?php echo output_message($message); ?>
@@ -21,7 +19,8 @@ include_layout_template('admin_header.php');
 		<th>Caption</th>
 		<th>Size</th>
 		<th>Type</th>
-		<th>Action</th>
+		<th>Comments</th>
+		<th>&nbsp;</th>
 	</tr>
 <?php foreach($photos as $photo):  ?>
 	<tr>
@@ -31,11 +30,16 @@ include_layout_template('admin_header.php');
 		<td><?php echo $photo->size_as_text();?> </td>
 		<td><?php echo $photo->type; ?> </td>
 		<td>
-			<a href="edit_photo.php?id=<?php echo $photo->id;?>">Edit</a><br />
-			<a href="delete_photo.php?id=<?php echo $photo->id;?>">Delete</a>
+			<a href="photo_comments.php?id=<?php echo $photo->id; ?>">
+			<?php echo count($photo->comments()); ?>
+			</a>
+		</td>
+		<td>
+			<a href="delete_photo.php?id=<?php echo $photo->id; ?>" onclick="return confirm('Are you sure?')">
+			Delete
+			</a>
 		</td>
 	</tr>
-
 <?php endforeach; ?>
 </table>
 <br />

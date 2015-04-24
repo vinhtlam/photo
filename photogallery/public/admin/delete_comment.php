@@ -11,10 +11,10 @@ $comment = Comment::find_by_id($comment_id);
 $photo_id = $comment->photograph_id;
 
 if($comment && $comment->delete()) {
-	$message = "The comment id {$comment->id} was deleted.";
-	redirect_to("edit_photo.php?id={$photo_id}") ;
+	$session->message("The comment id {$comment->id} was deleted.");
+	redirect_to("photo_comments.php?id={$comment->photograph_id}") ;
 } else {
-	$message = "Failed to delete commnent id {$comment->id}.";
-	redirect_to("edit_photo.php?id={$photo_id}") ;
+	$session->message("Failed to delete commnent id {$comment->id}.");
+	redirect_to("photo_comments.php?id={$comment->photograph_id}") ;
 }
 ?>
